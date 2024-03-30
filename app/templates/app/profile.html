@@ -1,0 +1,56 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Profile{% endblock title %}
+{% block main-content %}
+<script>
+   function validation()
+   {
+      var num=document.getElementById('mobile').value;
+      if(num.length!=10){
+         document.getElementById('mobvalid').innerHTML="Mobile Number must be of 10 digits";
+         return false;
+      }
+      else{
+         return true;
+      }
+      
+   }
+</script>
+<div class="container">
+   <div class="row my-3">
+      <div class="col-sm-6 offset-sm-3">
+         <h3>Profile</h3>
+         <hr>
+         <form action="" method="post" novalidate class="shadow p-5" onsubmit="return validation()">
+            {% if messages %}
+            {% for message in messages %}
+            <p {% if message.tags %} class="alert alert-{{message.tags}} mb-5" {% endif %}>{{message}}</p>
+            {% endfor %}
+            {% endif %}
+            {% csrf_token %}
+            {% for c in customer %}
+            <div class="form-group mb-3">
+               <label for="fname" class="form-label">First Name</label>
+               <input type="text" name="fname" class="form-control" value="{{c.first_name}}">
+               <label for="lname" class="form-label">Last Name</label>
+               <input type="text" name="lname"  class="form-control" value="{{c.last_name}}">
+               <label for="gender" class="form-label">Gender</label>
+               <select class="form-select" name="gender",aria-label="Default select example">
+                  <option selected>{{c.gender}}</option>
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                </select>
+               <label for="mobile" class="form-label">Mobile No</label>
+               <input type="text" name="mobile"  id="mobile" class="form-control" value="{{c.mobile}}"><div id="mobvalid" class="text-danger"></div>
+               <label for="email" class="form-label">Email</label>
+               <input type="text" name="email"  class="form-control" value="{{c.email}}">
+               <center><button class="btn btn-primary text-center" style="margin: 20px;" type="submit">Update Profile</button></center>
+            </div>
+            {% endfor %}
+         </form>
+      </div>
+   </div>
+</div>
+
+
+{% endblock main-content %}

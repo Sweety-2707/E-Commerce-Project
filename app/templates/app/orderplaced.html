@@ -1,0 +1,14 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Order Placed{% endblock title %}
+{% block main-content %}
+<div class="container">
+    <div class="row my-3">
+        <div class="col-sm-6 offset-sm-3 text-center p-5">
+            <img src="{% static 'app/images/banner/orderplaced.jpg' %}" height="400px">
+            <p>Order Placed!</p>
+            <a href="/orders" class="btn btn-primary px-5 py-2">Track Order</a>
+        </div>
+    </div>
+</div>
+{% endblock main-content %}

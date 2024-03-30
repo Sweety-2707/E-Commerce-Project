@@ -1,0 +1,38 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Buy Now{% endblock title %}
+{% block main-content %}
+<div class="container my-5">
+    <div class="row">
+        <form action="" method="post" >
+            {% if messages %}
+            {% for message in messages %}
+            <p {% if message.tags %} class="alert alert-{{message.tags}} mb-5" {% endif %}>{{message}}</p>
+            {% endfor %}
+            {% endif %}
+        </form>
+        <div class="col-sm-2 border-end">
+            <ul class="list-unstyled">
+                <li class="d-grid"><a href="{% url 'addaddress' %}" class="btn btn-primary">Add a new Address</a></li>
+            </ul>
+        </div>
+        <div class="col-sm-9 offset-sm-1">
+            <div class="row">
+                {% for a in add %}
+                <div class="col-sm-6">
+                    <div class="card" style="margin: 20px;">
+                        <div class="card-body">
+                            <h3>{{a.first_name|capfirst}} {{a.last_name|capfirst}}</h3>
+                            <p>{{a.locality}}, {{a.city}}, {{a.state}}, {{a.pincode}}</p>
+                            <p>{{a.mobile}}</p>
+                        </div>
+                    </div>
+                    
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+{% endblock main-content %}

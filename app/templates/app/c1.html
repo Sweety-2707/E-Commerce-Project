@@ -1,0 +1,35 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Customer Registration{% endblock title %}
+{% block main-content %}
+<div class="container">
+   <div class="row my-3">
+      <div class="col-sm-6 offset-sm-3">
+         <h3>Customer Registration</h3>
+         <hr>
+         <form action="" method="post" novalidate class="shadow p-5">
+            {% csrf_token %}
+            <p class="text-danger">{{msg}}</p>
+            <label for="name" class="form-label">Name</label>
+            <input type="text" name="name" id="name" class="form-control" required>
+            <label for="exampleFormControlInput1" class="form-label">Email address</label>
+            <input type="email" name="email" class="form-control" id="exampleFormControlInput1" placeholder="name@gmail.com"
+               required>
+            <label for="inputPassword5" class="form-label">Password</label>
+            <input type="password" name="pass" id="inputPassword5" class="form-control" aria-labelledby="passwordHelpBlock" required>
+            <div id="passwordHelpBlock" class="form-text">
+               Your password must be 8-20 characters long, contain letters and numbers, and must not contain spaces,
+               special characters, or emoji.
+            </div>
+            <label for="inputPassword5"  class="form-label">Confirm Password</label>
+            <input type="password" name="cpass" id="inputPassword5" class="form-control" aria-labelledby="passwordHelpBlock" required>
+            
+            <div class="col-12 text-center" style="padding: 20px;">
+               <button type="submit" class="btn btn-primary mb-3">Submit</button>
+            </div>
+            <div class="text-center">Existing User? <a href="{% url "login" %}">Login Now</a></div>
+         </form>
+      </div>
+   </div>
+</div>
+{% endblock main-content %}
